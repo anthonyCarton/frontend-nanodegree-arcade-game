@@ -54,13 +54,19 @@ class Player {
 
 
 // Now instantiate your objects.
+let allEnemies = [];
+let player = new Player();
+
 function gameStart(){
   // Place all enemy objects in an array called allEnemies
-  let allEnemies = [];
   allEnemies.push(new Enemy());
   // Place the player object in a variable called player
-  let player = new Player();
 }
+
+// TODO: Opening index.html should load game
+window.addEventListener('load', function(event){
+  gameStart();
+});
 
 
 
