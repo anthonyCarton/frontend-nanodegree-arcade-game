@@ -7,7 +7,7 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = 200;
-    let initLoc = function(){
+    this.y = (function(){ // IIFE
       function getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
       }
@@ -22,10 +22,7 @@ var Enemy = function() {
         2 : 225
       }
       return laneDef[rand];
-      }
-    this.y = initLoc();
-
-    // this.y = initialLocation();
+    })();
 };
 
 // Update the enemy's position, required method for game
