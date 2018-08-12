@@ -46,6 +46,7 @@ class Player {
   }
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    // TODO, could this just also use the above?
   }
   handleInput() {
 
