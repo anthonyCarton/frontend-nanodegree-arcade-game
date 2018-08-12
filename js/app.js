@@ -6,6 +6,31 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.x = 200;
+    let initLoc = function(){
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      }
+      let rand = getRandomInt(3);
+      console.log(rand);
+      switch (rand) {
+        case 0: // highLane
+          return 60;
+          break;
+        case 1: // medLane
+          return 145;
+          break;
+        case 2: // lowLane
+            return 225;
+          break;
+        default: // default to highLane
+          return 60;
+      }
+    }
+
+    this.y = initLoc();
+
+    // this.y = initialLocation();
 };
 
 // Update the enemy's position, required method for game
@@ -25,6 +50,23 @@ Enemy.prototype.render = function() {
 
 Enemy.prototype.initialLocation = function() {
   // TODO: Set Enemy Initial Location
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+  let rand = getRandomInt(3);
+  switch (rand) {
+    case 0: // highLane
+      return 60;
+      break;
+    case 1: // medLane
+      return 145;
+      break;
+    case 2: // lowLane
+        return 225;
+      break;
+    default: // default to highLane
+      return 60;
+  }
 }
 
 Enemy.prototype.speed = function() {
