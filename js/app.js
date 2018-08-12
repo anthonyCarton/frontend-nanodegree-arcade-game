@@ -76,6 +76,7 @@ Enemy.prototype.speed = function() {
 // Now write your own player class
 class Player {
   constructor() {
+    // Locate Player on game board
     this.x = 200;
     this.y = 400;
 
