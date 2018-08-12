@@ -45,6 +45,7 @@ class Player {
 let allEnemies = [];
 allEnemies.push(new Enemy());
 // Place the player object in a variable called player
+let player = new Player();
 
 
 
