@@ -7,7 +7,7 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = 200;
-    this.y = (function(){ // IIFE
+    this.y = (function initialLocation(){ // IIFE
       function getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
       }
