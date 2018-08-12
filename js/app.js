@@ -36,6 +36,9 @@ class Player {
   constructor(arg1, arg2) {
     this.arg1 = arg1;
     this.arg2 = arg2;
+
+    // Set this.sprite to appropriate image
+    this.sprite = 'images/char-boy.png';
   }
   // Methods: This class requires an update(), render() and a handleInput() method.
   update() {
@@ -51,11 +54,13 @@ class Player {
 
 
 // Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-let allEnemies = [];
-allEnemies.push(new Enemy());
-// Place the player object in a variable called player
-let player = new Player();
+function gameStart(){
+  // Place all enemy objects in an array called allEnemies
+  let allEnemies = [];
+  allEnemies.push(new Enemy());
+  // Place the player object in a variable called player
+  let player = new Player();
+}
 
 
 
