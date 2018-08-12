@@ -12,22 +12,17 @@ var Enemy = function() {
         return Math.floor(Math.random() * Math.floor(max));
       }
       let rand = getRandomInt(3);
-      console.log(rand);
-      switch (rand) {
-        case 0: // highLane
-          return 60;
-          break;
-        case 1: // medLane
-          return 145;
-          break;
-        case 2: // lowLane
-            return 225;
-          break;
-        default: // default to highLane
-          return 60;
+      /* Replaced switch statement with Object Literal and then access obj properties by index.
+        https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
+        */
+      const laneDef = {
+        0 : 60,
+        1 : 145,
+        2 : 225
       }
-    }
-
+      return laneDef[rand];
+      }
     this.y = initLoc();
 
     // this.y = initialLocation();
@@ -50,20 +45,6 @@ Enemy.prototype.render = function() {
 
 Enemy.prototype.initialLocation = function() {
   // TODO: Set Enemy Initial Location
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
-  let rand = getRandomInt(3);
-  /* Less lines to replace switch statement with Object Literal and then access obj properties by index.
-    https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/
-    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
-    */
-  const laneDef = {
-    highLane : 60,
-    medLane : 145,
-    lowLane : 225
-  }
-  landDef[rand];
 
 }
 
