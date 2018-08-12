@@ -33,9 +33,9 @@ Enemy.prototype.speed = function() {
 
 // Now write your own player class
 class Player {
-  constructor(arg1, arg2) {
-    this.arg1 = arg1;
-    this.arg2 = arg2;
+  constructor() {
+    this.x = 200;
+    this.y = 400;
 
     // Set this.sprite to appropriate image
     this.sprite = 'images/char-boy.png';
@@ -45,7 +45,7 @@ class Player {
 
   }
   render() {
-
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
   handleInput() {
 
