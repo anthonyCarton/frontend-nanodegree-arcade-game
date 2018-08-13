@@ -35,12 +35,9 @@ class Player {
   update(dt) {
   }
   render() {
-    // console.log(`before ${this.x} and ${this.y}`);
-    // player.handleInput();
-
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    // console.log(`after ${this.x} and ${this.y}`);
   }
+
   handleInput(keyInput) {
     const moveDef = {
       left: function() {return player.moveH(-1)},
@@ -60,15 +57,19 @@ class Player {
     }
     // if (player is at edge) {don't do anything}
   }
+
   moveH(sign) { // Move Horizontally
     const hSpeed = 50;
-    player.x = player.x + (hSpeed*sign);
+    this.x = this.x + (hSpeed*sign);
     }
+
   moveV(sign) { // Move Vertically
     const vSpeed = 42;
-    player.y = player.y + (vSpeed*sign);
+    this.y = this.y + (vSpeed*sign);
   }
 }
+
+
 
 let initialLocation = function (){
   // Replaced switch statement with laneDef Object Literal. https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/
