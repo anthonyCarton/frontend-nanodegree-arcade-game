@@ -7,11 +7,11 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = 200;
-    this.y = (function initialLocation(){ // IIFE
-      function getRandomInt(max) {
+    // Make initialLocation and getRandomInt IIFEs
+    this.y = (function initialLocation(){
+      let rand = (function getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
-      }
-      let rand = getRandomInt(3);
+      })(3);
       /* Replaced switch statement with Object Literal and then access obj properties by index.
         https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/
         https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
