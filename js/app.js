@@ -26,17 +26,13 @@ class Player {
   constructor() {
     // Locate Player on game board
     this.x = 200;
-    this.y = 400;
+    this.y = 390;
 
     // Set this.sprite to appropriate image
     this.sprite = 'images/char-boy.png';
   }
   // Methods: This class requires an update(), render() and a handleInput() method.
   update(dt) {
-    // engine.js passes dt into update(dt)
-    // TODO: Update the player location
-    // this.x = this.x + moveDef[keyInput];
-    // this.y = this.y + moveDef[keyInput];
   }
   render() {
     // console.log(`before ${this.x} and ${this.y}`);
@@ -46,22 +42,32 @@ class Player {
     // console.log(`after ${this.x} and ${this.y}`);
   }
   handleInput(keyInput) {
-    let move = movePlayer(keyInput);
-    console.log(move);
-  }
-}
-
-let movePlayer = function(keyInput) {
-  console.log(keyInput);
-  let increment = 10;
-
-  const moveDef = {
-    left: function(){ this.x = this.x - increment},
-    right: function(){ this.x = this.x + increment},
-    up: function(){ this.y = this.y + increment},
-    down: function(){ this.y = this.y - increment}
+    const hSpeed = 50, vSpeed = 42;
+    const moveDef = {
+      left: [-hSpeed, true],
+      right: [hSpeed, true],
+      up: [-vSpeed, false],
+      down: [vSpeed, false]
     }
-  return moveDef[keyInput]();
+
+    if (moveDef[keyInput][1] === true) {
+      // console.log(`left || right ${moveDef[keyInput][0]}`);
+      this.x = this.x + moveDef[keyInput][0];
+    } else {
+      // console.log(`up || down ${moveDef[keyInput][0]}`);
+      this.y = this.y + moveDef[keyInput][0];
+    }
+    console.log(`x = ${this.x} & y = ${this.y}`);
+
+    // Define Limits for the gameBoard
+    const limits = {
+      right: 400, // this.x
+      left: 0,
+      top: -30, // this.y
+      bottom: 390
+    }
+    // if (player is at edge) {don't do anything}
+  }
 }
 
 let initialLocation = function (){
