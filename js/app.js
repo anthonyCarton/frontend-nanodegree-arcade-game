@@ -11,7 +11,7 @@ class Enemy {
 
     // TODO: Handle collision with the Player
 
-    // Kill bug after it leaves screen
+    // Remove bug from array after it leaves screen
     if (this.x > 600) {
       killBug();
     }
