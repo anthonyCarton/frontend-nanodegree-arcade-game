@@ -1,13 +1,14 @@
 class Enemy {
   constructor() {
-    this.sprite = 'images/enemy-bug.png';
+    this.sprite = 'images/enemy-bug.png'; // TODO: random enemy f()
     this.x = -75;
     this.y = initialLocation();
   }
   update(dt){
-    // TODO: Set variable enemy speed
+    // TODO: Set VARIABLE enemy speed
     let speed = dt*200;
     let newX = this.x + speed;
+
     // TODO: Update the Enemy location
     this.x = newX;
 
@@ -51,19 +52,18 @@ let initialLocation = function (){
   let rand = (function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   })(3);
-  /* Replaced switch statement with laneDef Object Literal.
-    https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/
-    */
+  // Replaced switch statement with laneDef Object Literal. https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/
   return laneDef[rand];
 };
 
-// Now instantiate your objects.
+// Now instantiate objects.
+
+// Place the player object in a variable called player
 let player = new Player();
 let allEnemies = [];
 
 
 function gameStart(){
-  // Place the player object in a variable called player
   // Create new Enemies
   newEnemy();  // for now
 }
