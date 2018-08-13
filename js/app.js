@@ -44,28 +44,29 @@ class Player {
 
   handleInput(keyInput) {
     const moveDef = {
-      left: function() {return player.moveH(-1)},
-      right: function() {return player.moveH(1)},
-      up: function() {return player.moveV(-1)},
-      down: function() {return player.moveV(1)}
+      left: function() {
+        if (player.x > 0) { return player.moveH(-1) }
+      },
+      right: function() {
+        if (player.x < 400 ){ return player.moveH(1) }
+      },
+      up: function() {
+        if (player.y > 0) { return player.moveV(-1)}
+      },
+      down: function() {
+        if (player.y < 390) { return player.moveV(1)}
+      }
     }
     moveDef[keyInput]();
 
     // Define Limits for the gameBoard
     console.log(`x = ${this.x} & y = ${this.y}`);
-    const limits = {
-      right: 400, // this.x
-      left: 0,
-      top: -30, // this.y
-      bottom: 390
-    }
-    // if (player is at edge) {don't do anything}
   }
 
   moveH(sign) { // Move Horizontally
     const hSpeed = 50;
     this.x = this.x + (hSpeed*sign);
-    }
+  }
 
   moveV(sign) { // Move Vertically
     const vSpeed = 42;
