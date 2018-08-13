@@ -30,8 +30,6 @@ class Player {
 
     // Set this.sprite to appropriate image
     this.sprite = 'images/char-boy.png';
-
-    // Set moveDefs
   }
   // Methods: This class requires an update(), render() and a handleInput() method.
   update(dt) {
@@ -44,15 +42,13 @@ class Player {
     // console.log(`after ${this.x} and ${this.y}`);
   }
   handleInput(keyInput) {
-    const hSpeed = 50, vSpeed = 42;
     const moveDef = {
-      left: function() {return player.moveL()},
-      right: function() {return player.moveR()},
-      up: function() {return player.moveU()},
-      down: function() {return player.moveD()}
+      left: function() {return player.moveH(-1)},
+      right: function() {return player.moveH(1)},
+      up: function() {return player.moveV(-1)},
+      down: function() {return player.moveV(1)}
     }
-    moveDef[keyInput](this.x, this.y);
-
+    moveDef[keyInput]();
 
     // Define Limits for the gameBoard
     console.log(`x = ${this.x} & y = ${this.y}`);
@@ -64,29 +60,13 @@ class Player {
     }
     // if (player is at edge) {don't do anything}
   }
-
-  // Move Horizontally
-  moveL(x, y) {
+  moveH(sign) { // Move Horizontally
     const hSpeed = 50;
-    console.log(`move left from this.x = ${x}`);
-    this.x = this.x - hSpeed;
-  }
-  moveR(x, y) {
-    const hSpeed = 50;
-    console.log(`move right from this.x = ${x}`);
-    this.x = this.x + hSpeed;
-  }
-
-  // Move Vertically
-  moveU(x, y) {
+    player.x = player.x + (hSpeed*sign);
+    }
+  moveV(sign) { // Move Vertically
     const vSpeed = 42;
-    console.log(`move left from this.x = ${x}`);
-    this.y = this.y - vSpeed;
-  }
-  moveD(x, y) {
-    const vSpeed = 42;
-    console.log(`move right from this.x = ${x}`);
-    this.y = this.y + vSpeed;
+    player.y = player.y + (vSpeed*sign);
   }
 }
 
