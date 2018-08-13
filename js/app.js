@@ -31,12 +31,10 @@ class Enemy {
 
     // TODO: Handle collision with the Player
 
-    // TODO: Kill bug
+    // Kill bug after it leaves screen
     if (this.x > 600) {
-      console.log('this bug should die');
       killBug();
     }
-
   }
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -73,6 +71,7 @@ let player = new Player();
 
 function gameStart(){
   // Place the player object in a variable called player
+  newEnemy();
 }
 
 // TODO: Create Enemies
@@ -86,6 +85,8 @@ function newEnemy(){
 function killBug() {
   allEnemies.splice(this, 1);
   console.log('bug is dead');
+  // when a bug dies, a new one starts
+  newEnemy();
 }
 
 // TODO: Opening index.html should load game
