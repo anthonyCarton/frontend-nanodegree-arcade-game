@@ -1,25 +1,9 @@
-
 class Enemy {
   constructor() {
     // The image/sprite for our enemies, this uses a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = -75;
-    // Make initialLocation and getRandomInt IIFEs
-    this.y = (function initialLocation(){
-      let rand = (function getRandomInt(max) {
-        return Math.floor(Math.random() * Math.floor(max));
-      })(3);
-      /* Replaced switch statement with Object Literal and then access obj properties by index.
-        https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/
-        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
-        */
-      const laneDef = {
-        0 : 60,
-        1 : 145,
-        2 : 225
-      }
-      return laneDef[rand];
-    })();
+    this.y = initialLocation();
   }
   update(dt){
     // TODO: multiply any movement by the dt parameter to ensure the game runs at the same speed for all computers
@@ -64,29 +48,36 @@ class Player {
   }
 }
 
+let initialLocation = function (){
+  const laneDef = { 0 : 60, 1 : 145, 2 : 225 };
+  let rand = (function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  })(3);
+  /* Replaced switch statement with laneDef Object Literal.
+    https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/
+    */
+  return laneDef[rand];
+};
 
 // Now instantiate your objects.
-let allEnemies = [];
 let player = new Player();
+let allEnemies = [];
+
 
 function gameStart(){
   // Place the player object in a variable called player
-  newEnemy();
+  // Create new Enemies
+  newEnemy();  // for now
 }
 
 // TODO: Create Enemies
 function newEnemy(){
-  let anEnemy = new Enemy();
-
-  // Place all enemy objects in an array called allEnemies
-  allEnemies.push(anEnemy);
+  allEnemies.push(new Enemy());
 }
 
 function killBug() {
   allEnemies.splice(this, 1);
   console.log('bug is dead');
-  // when a bug dies, a new one starts
-  newEnemy();
 }
 
 // TODO: Opening index.html should load game
