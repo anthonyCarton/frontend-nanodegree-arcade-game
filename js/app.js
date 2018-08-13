@@ -5,6 +5,7 @@ class Enemy {
     this.y = initialLocation();
     this.speed = 400;  // TODO: Set VARIABLE enemy speed
   }
+
   update(dt){
     // Update the Enemy location
     this.x = this.x + (dt*this.speed);
@@ -16,6 +17,7 @@ class Enemy {
       killBug();
     }
   }
+
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
@@ -31,9 +33,11 @@ class Player {
     // Set this.sprite to appropriate image
     this.sprite = 'images/char-boy.png';
   }
+
   // Methods: This class requires an update(), render() and a handleInput() method.
   update(dt) {
   }
+
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
@@ -107,8 +111,6 @@ window.addEventListener('load', function(event){
   gameStart();
 });
 
-
-
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -118,8 +120,6 @@ document.addEventListener('keyup', function(e) {
       39: 'right',
       40: 'down'
   };
-  // let keyCheck = Object.keys(allowedKeys).includes(e.keyCode.toString());
-  // if (keyCheck == true) {
   if (Object.keys(allowedKeys).includes(e.keyCode.toString()) == true) {
     player.handleInput(allowedKeys[e.keyCode]);
   }
