@@ -30,6 +30,13 @@ class Enemy {
     this.x = newX;
 
     // TODO: Handle collision with the Player
+
+    // TODO: Kill bug
+    if (this.x > 600) {
+      console.log('this bug should die');
+      killBug();
+    }
+
   }
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -61,7 +68,7 @@ class Player {
 
 
 // Now instantiate your objects.
-let allEnemies = []; // use WeakSets instead to remove with this.enemy = null;
+let allEnemies = [];
 let player = new Player();
 
 function gameStart(){
@@ -74,6 +81,11 @@ function newEnemy(){
 
   // Place all enemy objects in an array called allEnemies
   allEnemies.push(anEnemy);
+}
+
+function killBug() {
+  allEnemies.splice(this, 1);
+  console.log('bug is dead');
 }
 
 // TODO: Opening index.html should load game
