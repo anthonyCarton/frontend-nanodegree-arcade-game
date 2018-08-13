@@ -23,6 +23,7 @@ class Enemy {
   }
   update(dt){
     // TODO: multiply any movement by the dt parameter to ensure the game runs at the same speed for all computers
+    // TODO: Set variable enemy speed
     let movement = dt*100;
     let newX = this.x + movement;
     // TODO: Update the Enemy location
@@ -32,12 +33,6 @@ class Enemy {
   }
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  }
-  initialLocation() {
-    // TODO: Set Enemy Initial Location
-  }
-  speed() {
-    // TODO: Set variable enemy speed
   }
 }
 
