@@ -1,10 +1,7 @@
-// Enemies our player must avoid
-var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+class Enemy {
+  constructor() {
+    // The image/sprite for our enemies, this uses a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = -75;
     // Make initialLocation and getRandomInt IIFEs
@@ -23,11 +20,8 @@ var Enemy = function() {
       }
       return laneDef[rand];
     })();
-};
-
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
+  }
+  update(dt){
     // TODO: multiply any movement by the dt parameter to ensure the game runs at the same speed for all computers
     let movement = dt*100;
     let newX = this.x + movement;
@@ -35,20 +29,16 @@ Enemy.prototype.update = function(dt) {
     this.x = newX;
 
     // TODO: Handle collision with the Player
-};
-
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
+  }
+  render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
-Enemy.prototype.initialLocation = function() {
-  // TODO: Set Enemy Initial Location
-
-}
-
-Enemy.prototype.speed = function() {
-  // TODO: Set variable enemy speed
+  }
+  initialLocation() {
+    // TODO: Set Enemy Initial Location
+  }
+  speed() {
+    // TODO: Set variable enemy speed
+  }
 }
 
 // Now write your own player class
@@ -76,13 +66,19 @@ class Player {
 
 
 // Now instantiate your objects.
-let allEnemies = [];
+let allEnemies = []; // use WeakSets instead to remove with this.enemy = null;
 let player = new Player();
 
 function gameStart(){
-  // Place all enemy objects in an array called allEnemies
-  allEnemies.push(new Enemy());
   // Place the player object in a variable called player
+}
+
+// TODO: Create Enemies
+function newEnemy(){
+  let anEnemy = new Enemy();
+
+  // Place all enemy objects in an array called allEnemies
+  allEnemies.push(anEnemy);
 }
 
 // TODO: Opening index.html should load game
