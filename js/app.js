@@ -6,7 +6,7 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = 200;
+    this.x = -75;
     // Make initialLocation and getRandomInt IIFEs
     this.y = (function initialLocation(){
       let rand = (function getRandomInt(max) {
@@ -29,8 +29,10 @@ var Enemy = function() {
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     // TODO: multiply any movement by the dt parameter to ensure the game runs at the same speed for all computers
-
+    let movement = dt*100;
+    let newX = this.x + movement;
     // TODO: Update the Enemy location
+    this.x = newX;
 
     // TODO: Handle collision with the Player
 };
