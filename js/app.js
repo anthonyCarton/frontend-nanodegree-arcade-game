@@ -1,15 +1,13 @@
 class Enemy {
   constructor() {
-    // The image/sprite for our enemies, this uses a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = -75;
     this.y = initialLocation();
   }
   update(dt){
-    // TODO: multiply any movement by the dt parameter to ensure the game runs at the same speed for all computers
     // TODO: Set variable enemy speed
-    let movement = dt*100;
-    let newX = this.x + movement;
+    let speed = dt*200;
+    let newX = this.x + speed;
     // TODO: Update the Enemy location
     this.x = newX;
 
