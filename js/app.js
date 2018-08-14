@@ -3,21 +3,35 @@ class Enemy {
     this.sprite = 'images/enemy-bug.png'; // TODO: random enemy f()
     this.x = -75;
     this.y = initialLocation();
-    this.speed = 400;  // TODO: Set VARIABLE enemy speed
-  }
+    // Set entity size for collision detection
+    this.width = 50;
+    this.height = 50;
+    this.speed = 40;  // TODO: Set VARIABLE enemy speed
+    this.gameSpeed = 1;
 
+    // Boolean Values for object states?
+    this.isMoving = true;
+    this.isAlive = true;
+    this.isCollided = false;
+
+  };
   update(dt){
-    // Update the Enemy location
-    this.x = this.x + (dt*this.speed);
+    if (this.isMoving === true) { this.x = this.x + (dt*this.speed); }
+    if (this.x >= 300) { this.isMoving = false }
 
-    // TODO: Handle collision with the Player
-
-    // Remove bug from array after it leaves screen
-    if (this.x > 600) {
-      killBug();
+    // Handle collision with the Player
+    // Uses Axis-Aligned Bounding Box method
+    // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+    if ( this.isMoving === true
+      && this.x < player.x + player.width
+      && this.x + this.width > player.x
+      && this.y < player.y + player.height
+      && this.height + this.y > player.y) {
+       console.log('collision detected');
+       this.isMoving = false;
+       gameWin(false);
     }
   }
-
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
@@ -29,13 +43,19 @@ class Player {
     // Locate Player on game board
     this.x = 200;
     this.y = 390;
-
+    // Set entity size for collision detection
+    this.width = 50;
+    this.height = 50;
     // Set this.sprite to appropriate image
     this.sprite = 'images/char-boy.png';
+
+    // Boolean Values for object states?
+    this.isPlaying = true;
   }
 
   // Methods: This class requires an update(), render() and a handleInput() method.
   update(dt) {
+    
   }
 
   render() {
@@ -85,6 +105,16 @@ let initialLocation = function (){
   return laneDef[rand];
 };
 
+let gameWin = function(bool) {
+  if (bool === true) {
+    // win game
+    console.log('win game');
+  } else {
+    // lose game >:(
+    console.log('lose game');
+  }
+}
+
 // Now instantiate objects.
 
 // Place the player object in a variable called player
@@ -98,14 +128,14 @@ function gameStart(){
 }
 
 // TODO: Create Enemies
-function newEnemy(){
+function newEnemy() {
   allEnemies.push(new Enemy());
 }
-
-function killBug() {
-  allEnemies.splice(this, 1);
-  console.log('bug is dead');
+function killEnemy(x) {
+  allEnemies.splice(x, 1)
 }
+
+
 
 // TODO: Opening index.html should load game
 window.addEventListener('load', function(event){
