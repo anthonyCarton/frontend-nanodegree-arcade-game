@@ -108,6 +108,10 @@ let initialLocation = function (){
 
 let gameEnd = function(arg) { // expects win or lose
   player.isPlaying = false;
+  // stop all the enemies
+  for (enemy of allEnemies) {
+    enemy.isMoving = false;
+  }
   if (arg === 'win') {
     // win game
     console.log('win game');
