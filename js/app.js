@@ -29,7 +29,7 @@ class Enemy {
       && this.height + this.y > player.y) {
        console.log('collision detected');
        this.isMoving = false;
-       gameWin(false);
+       gameEnd('lose');
     }
   }
   render() {
@@ -55,7 +55,7 @@ class Player {
 
   // Methods: This class requires an update(), render() and a handleInput() method.
   update(dt) {
-    
+
   }
 
   render() {
@@ -71,15 +71,16 @@ class Player {
         if (player.x < 400 ){ return player.moveH(1) }
       },
       up: function() {
-        if (player.y > 0) { return player.moveV(-1)}
+        if (player.y > 0) { return player.moveV(-1) };
       },
       down: function() {
         if (player.y < 390) { return player.moveV(1)}
       }
     }
-    moveDef[keyInput]();
+    if (this.isPlaying === true) { moveDef[keyInput](); };
+    if (player.y < 0) { return gameEnd('win') };
 
-    // Define Limits for the gameBoard
+    // Where is the player?
     console.log(`x = ${this.x} & y = ${this.y}`);
   }
 
@@ -105,8 +106,9 @@ let initialLocation = function (){
   return laneDef[rand];
 };
 
-let gameWin = function(bool) {
-  if (bool === true) {
+let gameEnd = function(arg) { // expects win or lose
+  player.isPlaying = false;
+  if (arg === 'win') {
     // win game
     console.log('win game');
   } else {
