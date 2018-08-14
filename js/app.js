@@ -7,8 +7,9 @@ class Enemy {
     this.speed = 40;  // TODO: Set VARIABLE enemy speed
 
     // Set entity size for collision detection
-    this.width = 50;
-    this.height = 50;
+    this.width = 60;
+    this.height = 60;
+    this.radius = 43;
 
     // Boolean Values for object states?
     this.isMoving = true;
@@ -21,8 +22,9 @@ class Enemy {
     if (this.x >= 300) { this.isAlive = false }
 
     // Handle collision with the Player
-    // Uses Axis-Aligned Bounding Box method
     // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+    /*
+    // Using Axis-Aligned Bounding Box method
     if ( this.isMoving === true
       && this.x < player.x + player.width
       && this.x + this.width > player.x
@@ -31,6 +33,16 @@ class Enemy {
        console.log('collision detected');
        this.isMoving = false;
        gameEnd('lose');
+    }
+    */
+    // Using Circle Collision method
+    let dx = this.x - player.x;
+    let dy = this.y - player.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
+    if ( this.isMoving === true && distance < this.radius + player.radius) {
+      console.log('collision detected');
+      this.isMoving = false;
+      gameEnd('lose');
     }
   }
   cleanUpDeadEnemies() {
@@ -52,8 +64,9 @@ class Player {
     this.x = 200;
     this.y = 390;
     // Set entity size for collision detection
-    this.width = 50;
+    this.width = 10;
     this.height = 50;
+    this.radius = 25;
     // Set this.sprite to appropriate image
     this.sprite = 'images/char-boy.png'; // TODO user select from options?
     // Boolean Values for object states?
