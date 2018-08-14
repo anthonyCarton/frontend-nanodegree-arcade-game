@@ -1,4 +1,12 @@
-// TODO convert functions to arrow functions
+// TODO: convert functions to arrow functions
+// TODO: Update the Readme
+// TODO: Comments are present and effectively explain longer code procedures. As a rule of thumb: describe what all custom functions and object methods do.
+// TODO: Check JS style guide
+
+// Opt TODO: Add collectible items on screen
+// Opt TODO: Multiple vehicle types
+// Opt TODO: Timed games
+
 class Enemy {
   constructor() {
     this.sprite = 'images/enemy-bug.png'; // TODO: random enemy f()
@@ -68,7 +76,7 @@ class Player {
     this.height = 50;
     this.radius = 25;
     // Set this.sprite to appropriate image
-    this.sprite = 'images/char-boy.png'; // TODO user select from options?
+    this.sprite = 'images/char-boy.png'; // TODO: user select from options?
     // Boolean Values for object states?
     this.isPlaying = true;
 
@@ -122,6 +130,7 @@ let gameEnd = function(arg) { // expects win or lose
   if (arg === 'win') {
     // win game
     console.log('win game');
+    // TODO: Something happens when player wins
   } else {
     // lose game >:(
     console.log('lose game');
@@ -138,6 +147,7 @@ let allEnemies = [];
 
 // Create Enemies
 function newEnemy() {
+  // TODO: Vehicles cross the screen (more than one)
   allEnemies.push(new Enemy());
 }
 
