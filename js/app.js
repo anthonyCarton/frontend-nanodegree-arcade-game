@@ -51,16 +51,7 @@ class Player {
 
     // Boolean Values for object states?
     this.isPlaying = true;
-
-    // move as subproperties on the objects?
-    /*
-    this.moveDef = {
-      left: function(who) { if (who.x > 0) { return who.moveH(-1) } },
-      right: function(who) { if (who.x < 400 ){ return who.moveH(1) } },
-      up: function(who) { if (who.y > 0) { return who.moveV(-1) } },
-      down: function(who) { if (who.y < 390) { return who.moveV(1)} }
-    }
-    */
+    // Movement methods
     this.left = function() { if (this.x > 0) { return this.moveH(-1) } };
     this.right = function() { if (this.x < 400 ) { return this.moveH(1) } };
     this.up = function() { if (this.y > 0) { return this.moveV(-1) } };
