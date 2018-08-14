@@ -1,4 +1,4 @@
-
+// TODO convert functions to arrow functions
 class Enemy {
   constructor() {
     this.sprite = 'images/enemy-bug.png'; // TODO: random enemy f()
@@ -19,7 +19,7 @@ class Enemy {
   update(dt){
     if (this.isMoving === true) { this.x += dt * this.speed; }
     // stops enemy after they leave the board
-    if (this.x >= 300) { this.isMoving = false }
+    if (this.x >= 300) { this.isAlive = false }
 
     // Handle collision with the Player
     // Uses Axis-Aligned Bounding Box method
@@ -34,8 +34,15 @@ class Enemy {
        gameEnd('lose');
     }
   }
+  cleanUpDeadEnemies() {
+    allEnemies = allEnemies.filter(function(enemy) {
+      return enemy.isAlive === true;
+    });
+  }
+
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    this.cleanUpDeadEnemies();
   }
 }
 
@@ -115,19 +122,20 @@ let gameEnd = function(arg) { // expects win or lose
 let player = new Player();
 let allEnemies = [];
 
-function gameStart(){
-  // Create new Enemies
-  newEnemy();  // for now
-}
-
-// TODO: Create Enemies
+// Create Enemies
 function newEnemy() {
   allEnemies.push(new Enemy());
 }
-function killEnemy(x) {
-  allEnemies.splice(x, 1)
-}
 
+function gameStart(){
+  // Reset player and enemies
+  allEnemies = [];
+  player = new Player();
+
+  // Create new Enemies
+  newEnemy();  // for now
+
+}
 
 
 // TODO: Opening index.html should load game
