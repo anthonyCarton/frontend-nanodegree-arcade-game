@@ -1,22 +1,24 @@
+
 class Enemy {
   constructor() {
     this.sprite = 'images/enemy-bug.png'; // TODO: random enemy f()
     this.x = -75;
-    this.y = initialLocation();
-    // Set entity size for collision detection
-    this.width = 50;
-    this.height = 50;
+    this.y = initialLocation(); // TODO: if this was an enemy.method, would I be able to: this.y = this.initialLocation();?
     this.speed = 40;  // TODO: Set VARIABLE enemy speed
     this.gameSpeed = 1;
 
+    // Set entity size for collision detection
+    this.width = 50;
+    this.height = 50;
+
     // Boolean Values for object states?
     this.isMoving = true;
-    this.isAlive = true;
+    this.isAlive = true; // TODO is this necessary?
     this.isCollided = false;
-
   };
   update(dt){
     if (this.isMoving === true) { this.x += dt * this.speed; }
+    // stops enemy after they leave the board
     if (this.x >= 300) { this.isMoving = false }
 
     // Handle collision with the Player
@@ -47,27 +49,21 @@ class Player {
     this.width = 50;
     this.height = 50;
     // Set this.sprite to appropriate image
-    this.sprite = 'images/char-boy.png';
-
+    this.sprite = 'images/char-boy.png'; // TODO user select from options?
     // Boolean Values for object states?
     this.isPlaying = true;
-    // Movement methods
-    this.left = function() { if (this.x > 0) { return this.moveH(-1) } };
-    this.right = function() { if (this.x < 400 ) { return this.moveH(1) } };
-    this.up = function() { if (this.y > 0) { return this.moveV(-1) } };
-    this.down = function() { if (this.y < 390) { return this.moveV(1)} };
 
   }
 
   // Methods: This class requires an update(), render() and a handleInput() method.
-  update(dt) {
+  // Movement methods
+  left() { if (this.x > 0) { return this.moveH(-1) } }
+  right() { if (this.x < 400 ) { return this.moveH(1) } }
+  up() { if (this.y > 0) { return this.moveV(-1) } }
+  down() { if (this.y < 390) { return this.moveV(1)} }
 
-  }
-
-  render() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  }
-
+  update(dt) {}
+  render() { ctx.drawImage(Resources.get(this.sprite), this.x, this.y) }
   handleInput(keyInput) {
     if (this.isPlaying === true) { this[keyInput](); };
     if (player.y < 0) { return gameEnd('win') };
