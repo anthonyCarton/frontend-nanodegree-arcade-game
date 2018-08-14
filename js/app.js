@@ -51,6 +51,21 @@ class Player {
 
     // Boolean Values for object states?
     this.isPlaying = true;
+
+    // move as subproperties on the objects?
+    /*
+    this.moveDef = {
+      left: function(who) { if (who.x > 0) { return who.moveH(-1) } },
+      right: function(who) { if (who.x < 400 ){ return who.moveH(1) } },
+      up: function(who) { if (who.y > 0) { return who.moveV(-1) } },
+      down: function(who) { if (who.y < 390) { return who.moveV(1)} }
+    }
+    */
+    this.left = function() { if (this.x > 0) { return this.moveH(-1) } };
+    this.right = function() { if (this.x < 400 ) { return this.moveH(1) } };
+    this.up = function() { if (this.y > 0) { return this.moveV(-1) } };
+    this.down = function() { if (this.y < 390) { return this.moveV(1)} };
+
   }
 
   // Methods: This class requires an update(), render() and a handleInput() method.
@@ -63,21 +78,7 @@ class Player {
   }
 
   handleInput(keyInput) {
-    const moveDef = {
-      left: function() {
-        if (player.x > 0) { return player.moveH(-1) }
-      },
-      right: function() {
-        if (player.x < 400 ){ return player.moveH(1) }
-      },
-      up: function() {
-        if (player.y > 0) { return player.moveV(-1) };
-      },
-      down: function() {
-        if (player.y < 390) { return player.moveV(1)}
-      }
-    }
-    if (this.isPlaying === true) { moveDef[keyInput](); };
+    if (this.isPlaying === true) { this[keyInput](); };
     if (player.y < 0) { return gameEnd('win') };
 
     // Where is the player?
@@ -126,7 +127,6 @@ let gameEnd = function(arg) { // expects win or lose
 // Place the player object in a variable called player
 let player = new Player();
 let allEnemies = [];
-
 
 function gameStart(){
   // Create new Enemies
