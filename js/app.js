@@ -126,6 +126,8 @@ let gameEnd = function(arg) { // expects win or lose
     // lose game >:(
     console.log('lose game');
   }
+  gameStart();
+
 }
 
 // Now instantiate objects.
