@@ -5,7 +5,6 @@ class Enemy {
     this.x = -75;
     this.y = initialLocation(); // TODO: if this was an enemy.method, would I be able to: this.y = this.initialLocation();?
     this.speed = 40;  // TODO: Set VARIABLE enemy speed
-    this.gameSpeed = 1;
 
     // Set entity size for collision detection
     this.width = 50;
@@ -13,7 +12,7 @@ class Enemy {
 
     // Boolean Values for object states?
     this.isMoving = true;
-    this.isAlive = true; // TODO is this necessary?
+    this.isAlive = true;
     this.isCollided = false;
   };
   update(dt){
