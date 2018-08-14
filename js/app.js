@@ -16,7 +16,7 @@ class Enemy {
 
   };
   update(dt){
-    if (this.isMoving === true) { this.x = this.x + (dt*this.speed); }
+    if (this.isMoving === true) { this.x += dt * this.speed; }
     if (this.x >= 300) { this.isMoving = false }
 
     // Handle collision with the Player
@@ -86,12 +86,12 @@ class Player {
 
   moveH(sign) { // Move Horizontally
     const hSpeed = 50;
-    this.x = this.x + (hSpeed*sign);
+    this.x += (hSpeed*sign);
   }
 
   moveV(sign) { // Move Vertically
     const vSpeed = 42;
-    this.y = this.y + (vSpeed*sign);
+    this.y += (vSpeed*sign);
   }
 }
 
