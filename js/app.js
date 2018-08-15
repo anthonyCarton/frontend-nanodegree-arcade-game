@@ -15,11 +15,9 @@ class Enemy {
     this.speed = 40;  // TODO: Set VARIABLE enemy speed
 
     // Set entity size for collision detection
-    this.width = 60;
-    this.height = 60;
     this.radius = 43;
 
-    // Boolean Values for object states?
+
     this.isMoving = true;
     this.isAlive = true;
     this.isCollided = false;
@@ -31,18 +29,6 @@ class Enemy {
 
     // Handle collision with the Player
     // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-    /*
-    // Using Axis-Aligned Bounding Box method
-    if ( this.isMoving === true
-      && this.x < player.x + player.width
-      && this.x + this.width > player.x
-      && this.y < player.y + player.height
-      && this.height + this.y > player.y) {
-       console.log('collision detected');
-       this.isMoving = false;
-       gameEnd('lose');
-    }
-    */
     // Using Circle Collision method
     let dx = this.x - player.x;
     let dy = this.y - player.y;
