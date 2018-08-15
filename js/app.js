@@ -1,8 +1,8 @@
-// TODO: Check JS style guide
-
-// Opt TODO: Add collectible items on screen
-// Opt TODO: Multiple vehicle types
-// Opt TODO: Timed games
+// Future TODO: Add collectible items on screen
+// Future TODO: Multiple vehicle types
+// Future TODO: Timed games
+// Future TODO: random enemy f()
+// Future TODO: user select from options
 
 /**
 * @description Represents an Enemy
@@ -16,7 +16,7 @@
 */
 class Enemy {
   constructor(lane, speed) {
-    this.sprite = 'images/enemy-bug.png'; // TODO: random enemy f()
+    this.sprite = 'images/enemy-bug.png';
     this.x = -100;
     this.y = lane;
     this.speed = speed;
@@ -67,7 +67,6 @@ class Enemy {
 class Player {
   constructor() {
     this.isPlaying = true;
-    // TODO: user select from options
     this.sprite = 'images/char-boy.png';
     this.x = 200;
     this.y = 390;
