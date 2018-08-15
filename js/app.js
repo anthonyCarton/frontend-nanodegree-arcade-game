@@ -82,7 +82,7 @@ class Player {
 }
 
 // Generates random number
-let rand = function getRandomInt(max) {
+let rand = function (max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
