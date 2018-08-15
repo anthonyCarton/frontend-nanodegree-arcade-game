@@ -10,13 +10,11 @@
 class Enemy {
   constructor(lane, speed) {
     this.sprite = 'images/enemy-bug.png'; // TODO: random enemy f()
-    this.x = -75;
+    this.x = -100;
     this.y = lane;
     this.speed = speed;
-
     // Set entity size for collision detection
     this.radius = 43;
-
     this.isMoving = true;
     this.isAlive = true;
     this.isCollided = false;
@@ -24,8 +22,7 @@ class Enemy {
   update(dt){
     // stops enemy after they leave the board, triggers cleanUpDeadEnemies()
     if (this.isMoving === true) { this.x += dt * this.speed; }
-    if (this.x >= 300) { this.isAlive = false }
-
+    if (this.x >= 500) { this.isAlive = false }
     // Handle collision with the Player
     // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
     // Using Circle Collision method
@@ -33,7 +30,6 @@ class Enemy {
     let dy = this.y - player.y;
     let distance = Math.sqrt(dx * dx + dy * dy);
     if ( this.isMoving === true && distance < this.radius + player.radius) {
-      console.log('collision detected');
       this.isMoving = false;
       gameEnd('lose');
     }
@@ -50,7 +46,6 @@ class Enemy {
   }
 }
 
-// Now write your own player class
 class Player {
   constructor() {
     this.isPlaying = true;
@@ -82,7 +77,7 @@ class Player {
 }
 
 // Generates random number
-let rand = function(max) {
+function rand(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
@@ -107,21 +102,27 @@ let gameEnd = function(arg) { // expects win or lose
 let player = new Player();
 let allEnemies = [];
 
+
 // Create Enemies
 function newEnemy() {
   const laneDef = { 0 : 60, 1 : 145, 2 : 225 };
-  const speedDef = { 0 : 50, 1 : 100, 2 : 150 };
+  const speedDef = { 0 : 100, 1 : 150, 2 : 200 };
   allEnemies.push(new Enemy(laneDef[rand(3)], speedDef[rand(3)]));
-  // TODO: Vehicles cross the screen (more than one)
+}
+
+let timer = setInterval(createEnemies, 1000);
+function createEnemies() {
+  console.log('go');
+  if (player.isPlaying) {
+    newEnemy();
+  }
 }
 
 function gameStart(){
   // Reset player and enemies
   allEnemies = [];
   player = new Player();
-
-  // Create new Enemies
-  newEnemy();  // for now
+  allEnemies.push(new Enemy(225, 300));
 }
 
 // TODO: Opening index.html should load game
