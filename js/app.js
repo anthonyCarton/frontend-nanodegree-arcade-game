@@ -12,7 +12,7 @@ class Enemy {
     this.sprite = 'images/enemy-bug.png'; // TODO: random enemy f()
     this.x = -75;
     this.y = lane;
-    this.speed = speed;  // TODO: Set VARIABLE enemy speed
+    this.speed = speed;
 
     // Set entity size for collision detection
     this.radius = 43;
