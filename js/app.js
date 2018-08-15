@@ -1,5 +1,3 @@
-// TODO: Update the Readme
-// TODO: Comments are present and effectively explain longer code procedures. As a rule of thumb: describe what all custom functions and object methods do.
 // TODO: Check JS style guide
 
 // Opt TODO: Add collectible items on screen
@@ -97,13 +95,12 @@ let gameEnd = arg => {
 let player = new Player();
 let allEnemies = [];
 
-// Create Enemies
+// Create Enemies passing in random speed and lane every 750ms
 let newEnemy = () => {
   const laneDef = { 0 : 60, 1 : 145, 2 : 225 };
   const speedDef = { 0 : 200, 1 : 250, 2 : 300 };
   allEnemies.push(new Enemy(laneDef[rand(3)], speedDef[rand(3)]));
 }
-
 let timer = setInterval(createEnemies, 750);
 function createEnemies() {
   console.log('go');
