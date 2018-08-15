@@ -1,4 +1,3 @@
-// TODO: convert functions to arrow functions
 // TODO: Update the Readme
 // TODO: Comments are present and effectively explain longer code procedures. As a rule of thumb: describe what all custom functions and object methods do.
 // TODO: Check JS style guide
@@ -75,11 +74,10 @@ class Player {
   }
 }
 
-let rand = function(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
+let rand = max => Math.floor(Math.random() * Math.floor(max))
 
-let gameEnd = function(arg) { // expects win or lose
+let gameEnd = arg => {
+  // arg expects win or lose
   player.isPlaying = false;
   // stop all the enemies
   for (enemy of allEnemies) {
@@ -100,7 +98,7 @@ let player = new Player();
 let allEnemies = [];
 
 // Create Enemies
-let newEnemy = function() {
+let newEnemy = () => {
   const laneDef = { 0 : 60, 1 : 145, 2 : 225 };
   const speedDef = { 0 : 100, 1 : 150, 2 : 200 };
   allEnemies.push(new Enemy(laneDef[rand(3)], speedDef[rand(3)]));
@@ -114,7 +112,7 @@ function createEnemies() {
   }
 }
 
-let gameStart = function(){
+let gameStart = () => {
   // Reset player and enemies
   allEnemies = [];
   player = new Player();
