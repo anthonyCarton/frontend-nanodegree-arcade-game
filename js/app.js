@@ -22,8 +22,8 @@ class Enemy {
     this.isCollided = false;
   };
   update(dt){
+    // stops enemy after they leave the board, triggers cleanUpDeadEnemies()
     if (this.isMoving === true) { this.x += dt * this.speed; }
-    // stops enemy after they leave the board
     if (this.x >= 300) { this.isAlive = false }
 
     // Handle collision with the Player
@@ -39,11 +39,11 @@ class Enemy {
     }
   }
   cleanUpDeadEnemies() {
+    // remove dead enemies from right side of board
     allEnemies = allEnemies.filter(function(enemy) {
       return enemy.isAlive === true;
     });
   }
-
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     this.cleanUpDeadEnemies();
@@ -53,55 +53,37 @@ class Enemy {
 // Now write your own player class
 class Player {
   constructor() {
-    // Locate Player on game board
+    this.isPlaying = true;
+    this.sprite = 'images/char-boy.png'; // TODO: user select from options?
     this.x = 200;
     this.y = 390;
     // Set entity size for collision detection
-    this.width = 10;
-    this.height = 50;
     this.radius = 25;
-    // Set this.sprite to appropriate image
-    this.sprite = 'images/char-boy.png'; // TODO: user select from options?
-    // Boolean Values for object states?
-    this.isPlaying = true;
-
   }
-
-  // Methods: This class requires an update(), render() and a handleInput() method.
   // Movement methods
+  moveH(sign) { // Move Horizontally
+    const hSpeed = 50;
+    this.x += (hSpeed*sign);
+  }
+  moveV(sign) { // Move Vertically
+    const vSpeed = 42;
+    this.y += (vSpeed*sign);
+  }
   left() { if (this.x > 0) { return this.moveH(-1) } }
   right() { if (this.x < 400 ) { return this.moveH(1) } }
   up() { if (this.y > 0) { return this.moveV(-1) } }
   down() { if (this.y < 390) { return this.moveV(1)} }
-
   update(dt) {}
   render() { ctx.drawImage(Resources.get(this.sprite), this.x, this.y) }
   handleInput(keyInput) {
     if (this.isPlaying === true) { this[keyInput](); };
     if (player.y < 0) { return gameEnd('win') };
-
-    // Where is the player?
-    console.log(`x = ${this.x} & y = ${this.y}`);
-  }
-
-  moveH(sign) { // Move Horizontally
-    const hSpeed = 50;
-    this.x += (hSpeed*sign);
-  }
-
-  moveV(sign) { // Move Vertically
-    const vSpeed = 42;
-    this.y += (vSpeed*sign);
   }
 }
 
-
-let randThree = function (){
-  // Replaced switch statement with laneDef Object Literal. https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/
-  let rand = (function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  })(3);
-  return rand;
+// Generates random number
+let rand = function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 let gameEnd = function(arg) { // expects win or lose
@@ -132,9 +114,8 @@ let allEnemies = [];
 function newEnemy() {
   const laneDef = { 0 : 60, 1 : 145, 2 : 225 };
   const speedDef = { 0 : 50, 1 : 100, 2 : 150 };
-  allEnemies.push(new Enemy(laneDef[randThree()], speedDef[randThree()]));
+  allEnemies.push(new Enemy(laneDef[rand(3)], speedDef[rand(3)]));
   // TODO: Vehicles cross the screen (more than one)
-  // allEnemies.push(new Enemy());
 }
 
 function gameStart(){
