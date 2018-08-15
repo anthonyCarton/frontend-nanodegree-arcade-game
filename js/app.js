@@ -75,7 +75,7 @@ class Player {
   }
 }
 
-function rand(max) {
+let rand = function(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
@@ -99,9 +99,8 @@ let gameEnd = function(arg) { // expects win or lose
 let player = new Player();
 let allEnemies = [];
 
-
 // Create Enemies
-function newEnemy() {
+let newEnemy = function() {
   const laneDef = { 0 : 60, 1 : 145, 2 : 225 };
   const speedDef = { 0 : 100, 1 : 150, 2 : 200 };
   allEnemies.push(new Enemy(laneDef[rand(3)], speedDef[rand(3)]));
@@ -115,7 +114,7 @@ function createEnemies() {
   }
 }
 
-function gameStart(){
+let gameStart = function(){
   // Reset player and enemies
   allEnemies = [];
   player = new Player();
