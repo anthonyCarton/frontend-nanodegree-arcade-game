@@ -82,7 +82,7 @@ class Player {
 }
 
 // Generates random number
-let rand = function (max) {
+let rand = function(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
@@ -101,12 +101,9 @@ let gameEnd = function(arg) { // expects win or lose
     console.log('lose game');
   }
   gameStart();
-
 }
 
-// Now instantiate objects.
-
-// Place the player object in a variable called player
+// Instantiate objects
 let player = new Player();
 let allEnemies = [];
 
@@ -125,9 +122,7 @@ function gameStart(){
 
   // Create new Enemies
   newEnemy();  // for now
-
 }
-
 
 // TODO: Opening index.html should load game
 window.addEventListener('load', function(event){
