@@ -55,7 +55,6 @@ class Player {
     // Set entity size for collision detection
     this.radius = 25;
   }
-  // Movement methods
   moveH(sign) { // Move Horizontally
     const hSpeed = 50;
     this.x += (hSpeed*sign);
@@ -76,7 +75,6 @@ class Player {
   }
 }
 
-// Generates random number
 function rand(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
@@ -89,11 +87,10 @@ let gameEnd = function(arg) { // expects win or lose
   }
   if (arg === 'win') {
     // win game
-    console.log('win game');
-    // TODO: Something happens when player wins
+    alert("You Win!!!");
   } else {
     // lose game >:(
-    console.log('lose game');
+    alert("You lose >:(");
   }
   gameStart();
 }
