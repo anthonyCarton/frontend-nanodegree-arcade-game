@@ -8,15 +8,14 @@
 // Opt TODO: Timed games
 
 class Enemy {
-  constructor() {
+  constructor(lane, speed) {
     this.sprite = 'images/enemy-bug.png'; // TODO: random enemy f()
     this.x = -75;
-    this.y = initialLocation(); // TODO: if this was an enemy.method, would I be able to: this.y = this.initialLocation();?
-    this.speed = 40;  // TODO: Set VARIABLE enemy speed
+    this.y = lane;
+    this.speed = speed;  // TODO: Set VARIABLE enemy speed
 
     // Set entity size for collision detection
     this.radius = 43;
-
 
     this.isMoving = true;
     this.isAlive = true;
@@ -97,15 +96,13 @@ class Player {
 }
 
 
-
-let initialLocation = function (){
+let randThree = function (){
   // Replaced switch statement with laneDef Object Literal. https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/
-  const laneDef = { 0 : 60, 1 : 145, 2 : 225 };
   let rand = (function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   })(3);
-  return laneDef[rand];
-};
+  return rand;
+}
 
 let gameEnd = function(arg) { // expects win or lose
   player.isPlaying = false;
@@ -133,8 +130,11 @@ let allEnemies = [];
 
 // Create Enemies
 function newEnemy() {
+  const laneDef = { 0 : 60, 1 : 145, 2 : 225 };
+  const speedDef = { 0 : 50, 1 : 100, 2 : 150 };
+  allEnemies.push(new Enemy(laneDef[randThree()], speedDef[randThree()]));
   // TODO: Vehicles cross the screen (more than one)
-  allEnemies.push(new Enemy());
+  // allEnemies.push(new Enemy());
 }
 
 function gameStart(){
