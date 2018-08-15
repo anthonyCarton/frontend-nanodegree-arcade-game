@@ -100,11 +100,11 @@ let allEnemies = [];
 // Create Enemies
 let newEnemy = () => {
   const laneDef = { 0 : 60, 1 : 145, 2 : 225 };
-  const speedDef = { 0 : 100, 1 : 150, 2 : 200 };
+  const speedDef = { 0 : 200, 1 : 250, 2 : 300 };
   allEnemies.push(new Enemy(laneDef[rand(3)], speedDef[rand(3)]));
 }
 
-let timer = setInterval(createEnemies, 1000);
+let timer = setInterval(createEnemies, 750);
 function createEnemies() {
   console.log('go');
   if (player.isPlaying) {
