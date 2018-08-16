@@ -9,6 +9,9 @@ For detailed instructions on how to get started, check out this [guide](https://
 
 ## Installation and Initialization
 Clone the GitHub directory and open index.html. The game doesn't use any dependencies that need to be installed.
+`$ git clone https://github.com/anthonyCarton/frontend-nanodegree-arcade-game.git
+ $ cd frontend-nanodegree-arcade-gameEnd
+ $ open index.html`
 
 ## Gameplay
 The game begins when the page loads, and resets automatically when the player wins or loses.
