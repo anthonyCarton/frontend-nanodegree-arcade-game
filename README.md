@@ -7,6 +7,9 @@ Students should use this [rubric](https://review.udacity.com/#!/projects/2696458
 ## Instructions
 For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
 
+## Installation and Initialization
+Clone the GitHub directory and open index.html. The game doesn't use any dependencies that need to be installed.
+
 ## Gameplay
 The game begins when the page loads, and resets automatically when the player wins or loses.
 
